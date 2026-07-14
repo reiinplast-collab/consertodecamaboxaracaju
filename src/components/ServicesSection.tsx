@@ -1,39 +1,24 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bed, Settings, Shield, Clock } from "lucide-react";
+import ScheduleVisitDialog from "@/components/ScheduleVisitDialog";
 
 const ServicesSection = () => {
+  const [open, setOpen] = useState(false);
+
   const services = [
-    {
-      icon: <Bed className="w-8 h-8" />,
-      title: "Conserto de Cama Box",
-      description: "Reparamos estruturas quebradas, trocamos molas danificadas e restauramos o suporte da sua cama box.",
-      features: ["Troca de molas", "Reparo de estrutura", "Reforço da base", "Garantia de 6 meses"]
-    },
-    {
-      icon: <Settings className="w-8 h-8" />,
-      title: "Reforma de Colchão de Mola",
-      description: "Renovamos colchões de mola com substituição de componentes internos e revestimento exterior.",
-      features: ["Troca de molas", "Novo revestimento", "Limpeza profunda", "Higienização completa"]
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Reforma de Colchão Ortopédico",
-      description: "Especialistas em reforma de colchões ortopédicos mantendo suas propriedades terapêuticas.",
-      features: ["Manutenção ortopédica", "Materiais especiais", "Conforto preservado", "Qualidade garantida"]
-    }
+    { icon: <Bed className="w-8 h-8" />, title: "Conserto de Cama Box", description: "Reparamos estruturas quebradas, trocamos molas danificadas e restauramos o suporte da sua cama box.", features: ["Troca de molas", "Reparo de estrutura", "Reforço da base", "Garantia de 6 meses"] },
+    { icon: <Settings className="w-8 h-8" />, title: "Reforma de Colchão de Mola", description: "Renovamos colchões de mola com substituição de componentes internos e revestimento exterior.", features: ["Troca de molas", "Novo revestimento", "Limpeza profunda", "Higienização completa"] },
+    { icon: <Shield className="w-8 h-8" />, title: "Reforma de Colchão Ortopédico", description: "Especialistas em reforma de colchões ortopédicos mantendo suas propriedades terapêuticas.", features: ["Manutenção ortopédica", "Materiais especiais", "Conforto preservado", "Qualidade garantida"] }
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-background">
+    <section id="servicos" className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Nossos Serviços
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Especializados em consertos e reformas que devolvem o conforto do seu sono
-          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">Nossos Serviços</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Especializados em consertos e reformas que devolvem o conforto do seu sono</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -43,19 +28,15 @@ const ServicesSection = () => {
                 <div className="text-primary mb-6">{service.icon}</div>
                 <h3 className="text-xl font-bold text-foreground mb-4">{service.title}</h3>
                 <p className="text-muted-foreground mb-6">{service.description}</p>
-                
                 <ul className="space-y-2 mb-8">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-2 text-muted-foreground">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-muted-foreground">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                
-                <Button variant="comfort" className="w-full">
-                  Solicitar Orçamento
-                </Button>
+                <Button variant="comfort" className="w-full" onClick={() => setOpen(true)}>Solicitar Orçamento</Button>
               </CardContent>
             </Card>
           ))}
@@ -67,15 +48,12 @@ const ServicesSection = () => {
               <Clock className="w-6 h-6 text-primary" />
               <h3 className="text-2xl font-bold text-foreground">Atendimento a Domicílio</h3>
             </div>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Vamos até sua casa em Aracaju e região para avaliar e realizar o serviço com toda comodidade
-            </p>
-            <Button variant="hero" size="lg">
-              Agendar Visita
-            </Button>
+            <p className="text-muted-foreground mb-6 max-w-md">Vamos até sua casa em Aracaju e região para avaliar e realizar o serviço com toda comodidade</p>
+            <Button variant="hero" size="lg" onClick={() => setOpen(true)}>Agendar Visita</Button>
           </Card>
         </div>
       </div>
+      <ScheduleVisitDialog open={open} onOpenChange={setOpen} />
     </section>
   );
 };
