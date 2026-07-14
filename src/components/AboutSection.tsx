@@ -11,7 +11,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-soft">
+    <section id="sobre" className="py-16 lg:py-24 bg-gradient-soft">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
