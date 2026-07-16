@@ -76,16 +76,20 @@ const AdmPanel = () => {
             <TabsTrigger value="theme">Cores / Botões</TabsTrigger>
             <TabsTrigger value="contact">Contato</TabsTrigger>
             <TabsTrigger value="menu">Menu</TabsTrigger>
+            <TabsTrigger value="social">Redes sociais</TabsTrigger>
             <TabsTrigger value="posts">Postagens</TabsTrigger>
             <TabsTrigger value="requests">Pedidos</TabsTrigger>
+            <TabsTrigger value="visits">Visitas</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hero"><AdmHeroEditor /></TabsContent>
           <TabsContent value="theme"><AdmThemeEditor /></TabsContent>
           <TabsContent value="contact"><AdmContactEditor /></TabsContent>
           <TabsContent value="menu"><AdmMenuEditor /></TabsContent>
+          <TabsContent value="social"><AdmSocialEditor /></TabsContent>
           <TabsContent value="posts"><AdmPostsEditor /></TabsContent>
           <TabsContent value="requests"><AdmRequests /></TabsContent>
+          <TabsContent value="visits"><AdmVisits /></TabsContent>
         </Tabs>
       </main>
     </div>
