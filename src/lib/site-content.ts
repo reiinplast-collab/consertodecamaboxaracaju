@@ -31,6 +31,13 @@ export type ContactSettings = {
   area: string;
 };
 
+export type SocialSettings = {
+  whatsapp_url: string;
+  youtube_url: string;
+  facebook_url: string;
+  instagram_url: string;
+};
+
 export const DEFAULTS = {
   hero: {
     title: "Conserto de Cama Box em Aracaju",
@@ -61,6 +68,12 @@ export const DEFAULTS = {
     hours: "Segunda a Sábado - 8h às 18h",
     area: "Aracaju e Região Metropolitana",
   } as ContactSettings,
+  social: {
+    whatsapp_url: "https://wa.me/5579988392252",
+    youtube_url: "",
+    facebook_url: "",
+    instagram_url: "",
+  } as SocialSettings,
 };
 
 export async function fetchSettings<T = any>(key: string, fallback: T): Promise<T> {

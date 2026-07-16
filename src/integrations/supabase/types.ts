@@ -167,6 +167,45 @@ export type Database = {
         }
         Relationships: []
       }
+      visits: {
+        Row: {
+          city: string | null
+          country: string | null
+          created_at: string
+          id: string
+          ip: string | null
+          path: string | null
+          referrer: string | null
+          region: string | null
+          timezone: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          id?: string
+          ip?: string | null
+          path?: string | null
+          referrer?: string | null
+          region?: string | null
+          timezone?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          id?: string
+          ip?: string | null
+          path?: string | null
+          referrer?: string | null
+          region?: string | null
+          timezone?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

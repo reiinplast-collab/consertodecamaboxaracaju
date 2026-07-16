@@ -8,9 +8,11 @@ import { LogOut, Loader2 } from "lucide-react";
 import AdmHeroEditor from "@/components/adm/AdmHeroEditor";
 import AdmThemeEditor from "@/components/adm/AdmThemeEditor";
 import AdmContactEditor from "@/components/adm/AdmContactEditor";
+import AdmSocialEditor from "@/components/adm/AdmSocialEditor";
 import AdmMenuEditor from "@/components/adm/AdmMenuEditor";
 import AdmPostsEditor from "@/components/adm/AdmPostsEditor";
 import AdmRequests from "@/components/adm/AdmRequests";
+import AdmVisits from "@/components/adm/AdmVisits";
 
 const AdmPanel = () => {
   const navigate = useNavigate();
@@ -55,8 +57,8 @@ const AdmPanel = () => {
       <header className="bg-background border-b border-border sticky top-0 z-30">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div>
-            <h1 className="font-bold text-lg">Painel ADM</h1>
-            <p className="text-xs text-muted-foreground">Reibiel — Bom Sono Aracaju</p>
+            <h1 className="font-bold text-lg text-primary">Painel ADM — RP Serviços</h1>
+            <p className="text-xs text-foreground">Reibiel</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={() => window.open("/", "_blank")}>Ver site</Button>
@@ -74,16 +76,20 @@ const AdmPanel = () => {
             <TabsTrigger value="theme">Cores / Botões</TabsTrigger>
             <TabsTrigger value="contact">Contato</TabsTrigger>
             <TabsTrigger value="menu">Menu</TabsTrigger>
+            <TabsTrigger value="social">Redes sociais</TabsTrigger>
             <TabsTrigger value="posts">Postagens</TabsTrigger>
             <TabsTrigger value="requests">Pedidos</TabsTrigger>
+            <TabsTrigger value="visits">Visitas</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hero"><AdmHeroEditor /></TabsContent>
           <TabsContent value="theme"><AdmThemeEditor /></TabsContent>
           <TabsContent value="contact"><AdmContactEditor /></TabsContent>
           <TabsContent value="menu"><AdmMenuEditor /></TabsContent>
+          <TabsContent value="social"><AdmSocialEditor /></TabsContent>
           <TabsContent value="posts"><AdmPostsEditor /></TabsContent>
           <TabsContent value="requests"><AdmRequests /></TabsContent>
+          <TabsContent value="visits"><AdmVisits /></TabsContent>
         </Tabs>
       </main>
     </div>
