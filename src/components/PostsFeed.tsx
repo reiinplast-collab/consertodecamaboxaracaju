@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSignedImageUrl } from "@/lib/site-content";
+import { ArrowRight } from "lucide-react";
 
 type Post = { id: string; title: string; body: string; image_url: string | null; created_at: string };
 
@@ -30,42 +32,46 @@ const PostsFeed = () => {
   }, []);
 
   if (posts.length === 0) return null;
-
   const [latest, ...rest] = posts;
 
   return (
     <section className="py-12 bg-background border-b border-border">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Novidades</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">Novidades</h2>
 
-        <Card className="border-0 shadow-comfort overflow-hidden bg-card">
-          <div className="grid md:grid-cols-2">
-            {urls[latest.id] && (
-              <img src={urls[latest.id]} alt={latest.title} className="w-full h-64 md:h-full object-cover" />
-            )}
-            <CardContent className={`p-8 ${!urls[latest.id] ? "md:col-span-2" : ""}`}>
-              <div className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">
-                {new Date(latest.created_at).toLocaleDateString("pt-BR")}
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">{latest.title}</h3>
-              <p className="text-muted-foreground whitespace-pre-wrap">{latest.body}</p>
-            </CardContent>
-          </div>
-        </Card>
+        <Link to={`/post/${latest.id}`} className="block group">
+          <Card className="border-0 shadow-comfort overflow-hidden bg-card hover:shadow-2xl transition-shadow">
+            <div className="grid md:grid-cols-2">
+              {urls[latest.id] && (
+                <img src={urls[latest.id]} alt={latest.title} className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              )}
+              <CardContent className={`p-8 ${!urls[latest.id] ? "md:col-span-2" : ""}`}>
+                <div className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">
+                  {new Date(latest.created_at).toLocaleDateString("pt-BR")}
+                </div>
+                <h3 className="text-2xl font-bold text-primary mb-3">{latest.title}</h3>
+                <p className="text-foreground line-clamp-4">{latest.body}</p>
+                <div className="mt-4 inline-flex items-center gap-2 text-primary font-semibold">
+                  Ler mais <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </CardContent>
+            </div>
+          </Card>
+        </Link>
 
         {rest.length > 0 && (
           <div className="grid md:grid-cols-3 gap-4 mt-6">
             {rest.slice(0, 6).map((p) => (
-              <Card key={p.id} className="border-0 shadow-soft overflow-hidden">
-                {urls[p.id] && <img src={urls[p.id]} alt={p.title} className="w-full h-40 object-cover" />}
-                <CardContent className="p-5">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    {new Date(p.created_at).toLocaleDateString("pt-BR")}
-                  </div>
-                  <h4 className="font-bold text-foreground mb-1">{p.title}</h4>
-                  <p className="text-sm text-muted-foreground line-clamp-3">{p.body}</p>
-                </CardContent>
-              </Card>
+              <Link key={p.id} to={`/post/${p.id}`} className="block group">
+                <Card className="border-0 shadow-soft overflow-hidden h-full hover:shadow-comfort transition-shadow">
+                  {urls[p.id] && <img src={urls[p.id]} alt={p.title} className="w-full h-40 object-cover" />}
+                  <CardContent className="p-5">
+                    <div className="text-xs text-foreground mb-1">{new Date(p.created_at).toLocaleDateString("pt-BR")}</div>
+                    <h4 className="font-bold text-primary mb-1 group-hover:underline">{p.title}</h4>
+                    <p className="text-sm text-foreground line-clamp-3">{p.body}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         )}
