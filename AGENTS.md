@@ -1,0 +1,3 @@
+# Architecture rules
+- Keep product catalog data in a dedicated public table with public read and server-validated admin writes; ten numbered slots remain reusable after deletion.
+- Purchase registration is contact information, not authenticated identity: store it privately with insert-only public access and retain it only for the browser session; WhatsApp links cannot select or verify the sender account.

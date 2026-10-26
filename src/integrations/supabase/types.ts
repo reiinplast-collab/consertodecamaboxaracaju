@@ -92,6 +92,63 @@ export type Database = {
         }
         Relationships: []
       }
+      products: {
+        Row: {
+          description: string
+          id: string
+          image_path: string | null
+          price: number
+          slot: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          description?: string
+          id?: string
+          image_path?: string | null
+          price: number
+          slot: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          description?: string
+          id?: string
+          image_path?: string | null
+          price?: number
+          slot?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      purchase_registrations: {
+        Row: {
+          city: string
+          created_at: string
+          full_name: string
+          id: string
+          neighborhood: string
+          phone: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          full_name: string
+          id?: string
+          neighborhood: string
+          phone: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          neighborhood?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       service_requests: {
         Row: {
           address: string | null
