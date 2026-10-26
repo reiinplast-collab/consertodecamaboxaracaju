@@ -1,5 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
-import { getSignedImageUrl } from "@/lib/site-content";
 import type { Tables } from "@/integrations/supabase/types";
 
 export type Product = Tables<"products">;
@@ -37,6 +35,7 @@ export function purchaseUrl(product: Pick<Product, "title" | "price" | "id">, bu
 }
 
 export async function loadProducts() {
+  const [{ supabase }, { getSignedImageUrl }] = await Promise.all([import("@/integrations/supabase/client"), import("@/lib/site-content")]);
   const { data, error } = await supabase.from("products").select("*").order("slot");
   if (error) throw error;
   const products = data ?? [];

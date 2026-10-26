@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import AdmLogin from "./pages/AdmLogin";
 import AdmPanel from "./pages/AdmPanel";
 import PostDetail from "./pages/PostDetail";
+import Products from "./pages/Products";
 import ThemeProvider from "./components/ThemeProvider";
 import { trackVisit } from "./lib/visit-tracker";
 
@@ -33,6 +34,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/post/:id" element={<PostDetail />} />
+            <Route path="/produtos" element={<Products />} />
             <Route path="/adm/login" element={<AdmLogin />} />
             <Route path="/adm" element={<AdmPanel />} />
             <Route path="*" element={<NotFound />} />
