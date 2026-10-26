@@ -13,6 +13,7 @@ import AdmMenuEditor from "@/components/adm/AdmMenuEditor";
 import AdmPostsEditor from "@/components/adm/AdmPostsEditor";
 import AdmRequests from "@/components/adm/AdmRequests";
 import AdmVisits from "@/components/adm/AdmVisits";
+import AdmProductsEditor from "@/components/adm/AdmProductsEditor";
 
 const AdmPanel = () => {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ const AdmPanel = () => {
             <TabsTrigger value="menu">Menu</TabsTrigger>
             <TabsTrigger value="social">Redes sociais</TabsTrigger>
             <TabsTrigger value="posts">Postagens</TabsTrigger>
+            <TabsTrigger value="products">Produtos</TabsTrigger>
             <TabsTrigger value="requests">Pedidos</TabsTrigger>
             <TabsTrigger value="visits">Visitas</TabsTrigger>
           </TabsList>
@@ -88,6 +90,7 @@ const AdmPanel = () => {
           <TabsContent value="menu"><AdmMenuEditor /></TabsContent>
           <TabsContent value="social"><AdmSocialEditor /></TabsContent>
           <TabsContent value="posts"><AdmPostsEditor /></TabsContent>
+          <TabsContent value="products"><AdmProductsEditor /></TabsContent>
           <TabsContent value="requests"><AdmRequests /></TabsContent>
           <TabsContent value="visits"><AdmVisits /></TabsContent>
         </Tabs>
