@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bed, Settings, Shield, Clock } from "lucide-react";
 import ScheduleVisitDialog from "@/components/ScheduleVisitDialog";
+import ServiceReels from "@/components/ServiceReels";
 
 const ServicesSection = () => {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,8 @@ const ServicesSection = () => {
             </Card>
           ))}
         </div>
+
+        <ServiceReels />
 
         <div className="text-center">
           <Card className="inline-block p-8 bg-gradient-soft border-0 shadow-comfort">

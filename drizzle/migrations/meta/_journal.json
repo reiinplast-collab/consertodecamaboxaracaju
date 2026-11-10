@@ -8,6 +8,13 @@
       "when": 1793007251156,
       "tag": "0000_create_product_catalog_and_purchase_registrations",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794341366400,
+      "tag": "0001_service_video_storage_access",
+      "breakpoints": true
     }
   ]
 }

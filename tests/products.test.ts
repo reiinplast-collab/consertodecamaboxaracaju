@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { PRODUCT_SLOTS, purchaseUrl, validBuyer } from "./products";
+import { PRODUCT_SLOTS, purchaseUrl, validBuyer } from "../src/lib/products";
 
 const buyer = { full_name: "Cliente Teste", phone: "79912345678", neighborhood: "Centro", city: "Aracaju" };
 describe("Produtos", () => {
