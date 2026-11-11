@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Users, MapPin, Clock, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const HITSCOUNTER_URL = "https://hitscounter.dev/api/hit?url=https%3A%2F%2Fconsertodecamaboxaracaju.lovable.app%2F&label=&icon=github&color=%23198754&message=&style=flat&tz=America%2FSao_Paulo";
 
 type Visit = {
   id: string;
@@ -19,6 +22,8 @@ type Visit = {
 const AdmVisits = () => {
   const [visits, setVisits] = useState<Visit[]>([]);
   const [loading, setLoading] = useState(true);
+  const [counterError, setCounterError] = useState(false);
+  const [counterAttempt, setCounterAttempt] = useState(0);
 
   useEffect(() => {
     supabase.from("visits").select("*").order("created_at", { ascending: false }).limit(500).then(({ data }) => {
@@ -46,6 +51,30 @@ const AdmVisits = () => {
 
   return (
     <div className="space-y-6">
+      <section aria-labelledby="hitscounter-title" className="space-y-3 border-b border-border pb-6">
+        <h2 id="hitscounter-title" className="text-lg font-semibold text-primary">Contador de acessos — HitsCounter</h2>
+        <p className="text-sm text-foreground break-all">consertodecamaboxaracaju.lovable.app</p>
+        {counterError ? (
+          <div role="alert" className="space-y-2">
+            <p className="text-sm text-foreground">O contador externo está indisponível no momento.</p>
+            <Button variant="outline" size="sm" onClick={() => {
+              setCounterError(false);
+              setCounterAttempt((attempt) => attempt + 1);
+            }}>Tentar novamente</Button>
+          </div>
+        ) : (
+          <img
+            key={counterAttempt}
+            src={counterAttempt ? `${HITSCOUNTER_URL}&refresh=${counterAttempt}` : HITSCOUNTER_URL}
+            alt="HitsCounter: acessos de hoje e total de acessos"
+            className="h-5 max-w-full"
+            referrerPolicy="no-referrer"
+            onError={() => setCounterError(true)}
+          />
+        )}
+        <p className="text-sm text-muted-foreground">Hoje / total · Horário de Brasília</p>
+        <p className="text-sm text-muted-foreground">O HitsCounter conta carregamentos do selo, inclusive no ADM, e não visitantes únicos. Os registros do site permanecem no relatório abaixo.</p>
+      </section>
       <div className="grid md:grid-cols-4 gap-4">
         {[
           { icon: Users, label: "Total de visitas", value: stats.total },
