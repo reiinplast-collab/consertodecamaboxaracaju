@@ -1,5 +1,5 @@
 # Serviços e produtos
-- [ ] Reiniciar contagem mensal no ADM sem apagar histórico e mostrar origem social quando disponível.
+- [x] Reiniciar contagem mensal no ADM sem apagar histórico e mostrar origem social quando disponível.
 - [x] Adicionar cinco vídeos verticais em Serviços com upload, título, salvar e remover pelo ADM.
 - [x] Verificar salvamento e reprodução dos vídeos no site.
 - [x] Criar catálogo com 10 espaços e acesso pelo menu.
