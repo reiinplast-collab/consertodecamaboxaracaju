@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { DEFAULTS, fetchSettings, saveSettings, type SocialSettings } from "@/lib/site-content";
-import { Save, Loader2, MessageCircle, Youtube, Facebook, Instagram } from "lucide-react";
+import { Save, Loader2 } from "lucide-react";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon, YouTubeIcon } from "@/components/BrandIcons";
 import { toast } from "sonner";
 
 const AdmSocialEditor = () => {
@@ -22,10 +23,10 @@ const AdmSocialEditor = () => {
   };
 
   const fields = [
-    { icon: MessageCircle, label: "WhatsApp (link completo)", ph: "https://wa.me/5579988392252", key: "whatsapp_url" as const },
-    { icon: Youtube, label: "YouTube", ph: "https://youtube.com/@seucanal", key: "youtube_url" as const },
-    { icon: Facebook, label: "Facebook", ph: "https://facebook.com/suapagina", key: "facebook_url" as const },
-    { icon: Instagram, label: "Instagram", ph: "https://instagram.com/seuperfil", key: "instagram_url" as const },
+    { icon: WhatsAppIcon, label: "WhatsApp (link completo)", ph: "https://wa.me/5579988392252", key: "whatsapp_url" as const },
+    { icon: YouTubeIcon, label: "YouTube", ph: "https://youtube.com/@seucanal", key: "youtube_url" as const },
+    { icon: FacebookIcon, label: "Facebook", ph: "https://facebook.com/suapagina", key: "facebook_url" as const },
+    { icon: InstagramIcon, label: "Instagram", ph: "https://instagram.com/seuperfil", key: "instagram_url" as const },
   ];
 
   return (
@@ -34,7 +35,7 @@ const AdmSocialEditor = () => {
       <CardContent className="space-y-4">
         {fields.map((f) => (
           <div key={f.key}>
-            <Label className="flex items-center gap-2"><f.icon className="w-4 h-4 text-primary" /> {f.label}</Label>
+            <Label className="flex items-center gap-2"><f.icon className="w-4 h-4" /> {f.label}</Label>
             <Input value={data[f.key]} onChange={(e) => upd({ [f.key]: e.target.value } as any)} placeholder={f.ph} />
           </div>
         ))}

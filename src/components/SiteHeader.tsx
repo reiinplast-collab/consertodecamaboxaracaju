@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, ShieldCheck, X, Youtube, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { Menu, ShieldCheck, X as CloseIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon, YouTubeIcon } from "@/components/BrandIcons";
 import { supabase } from "@/integrations/supabase/client";
 import { DEFAULTS, fetchSettings, type SocialSettings } from "@/lib/site-content";
 import logo from "@/assets/rp-logo.png.asset.json";
@@ -35,10 +36,10 @@ const SiteHeader = () => {
   };
 
   const socialLinks = [
-    { url: social.whatsapp_url, icon: MessageCircle, label: "WhatsApp", color: "hover:text-green-600" },
-    { url: social.youtube_url, icon: Youtube, label: "YouTube", color: "hover:text-red-600" },
-    { url: social.facebook_url, icon: Facebook, label: "Facebook", color: "hover:text-blue-600" },
-    { url: social.instagram_url, icon: Instagram, label: "Instagram", color: "hover:text-pink-600" },
+    { url: social.whatsapp_url, icon: WhatsAppIcon, label: "WhatsApp" },
+    { url: social.youtube_url, icon: YouTubeIcon, label: "YouTube" },
+    { url: social.facebook_url, icon: FacebookIcon, label: "Facebook" },
+    { url: social.instagram_url, icon: InstagramIcon, label: "Instagram" },
   ].filter((s) => s.url);
 
   return (
@@ -57,8 +58,8 @@ const SiteHeader = () => {
           <div className="flex items-center gap-2 border-l border-border pl-4">
             {socialLinks.map((s) => (
               <a key={s.label} href={s.url} target="_blank" rel="noreferrer" aria-label={s.label}
-                className={`text-foreground ${s.color} transition-colors`}>
-                <s.icon className="w-5 h-5" />
+                className="transition-transform hover:-translate-y-0.5 hover:scale-110">
+                <s.icon className="h-6 w-6" />
               </a>
             ))}
           </div>
@@ -70,7 +71,7 @@ const SiteHeader = () => {
         </nav>
 
         <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {open ? <CloseIcon className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -82,8 +83,8 @@ const SiteHeader = () => {
               <div className="flex items-center gap-4 pt-2 border-t border-border">
                 {socialLinks.map((s) => (
                   <a key={s.label} href={s.url} target="_blank" rel="noreferrer" aria-label={s.label}
-                    className={`text-foreground ${s.color} transition-colors`}>
-                    <s.icon className="w-6 h-6" />
+                    className="transition-transform hover:scale-110">
+                    <s.icon className="h-7 w-7" />
                   </a>
                 ))}
               </div>

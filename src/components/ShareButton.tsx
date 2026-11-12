@@ -1,6 +1,13 @@
-import { Share2, Instagram, Facebook, Send, MessageCircle } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  TelegramIcon,
+  WhatsAppIcon,
+  XIcon,
+} from "@/components/BrandIcons";
 import { toast } from "sonner";
 
 type Props = { postId: string; title: string };
@@ -18,11 +25,11 @@ const ShareButton = ({ postId, title }: Props) => {
   };
 
   const options = [
-    { label: "Instagram", icon: <Instagram className="w-4 h-4" />, action: instagram },
-    { label: "Facebook", icon: <Facebook className="w-4 h-4" />, action: () => open(`https://www.facebook.com/sharer/sharer.php?u=${u}`) },
-    { label: "Telegram", icon: <Send className="w-4 h-4" />, action: () => open(`https://t.me/share/url?url=${u}&text=${t}`) },
-    { label: "X", icon: <span className="w-4 h-4 font-bold leading-4 text-center">𝕏</span>, action: () => open(`https://twitter.com/intent/tweet?url=${u}&text=${t}`) },
-    { label: "WhatsApp", icon: <MessageCircle className="w-4 h-4" />, action: () => open(`https://wa.me/?text=${t}%20${u}`) },
+    { label: "Instagram", icon: <InstagramIcon className="h-5 w-5" />, action: instagram },
+    { label: "Facebook", icon: <FacebookIcon className="h-5 w-5" />, action: () => open(`https://www.facebook.com/sharer/sharer.php?u=${u}`) },
+    { label: "Telegram", icon: <TelegramIcon className="h-5 w-5" />, action: () => open(`https://t.me/share/url?url=${u}&text=${t}`) },
+    { label: "X", icon: <XIcon className="h-5 w-5" />, action: () => open(`https://twitter.com/intent/tweet?url=${u}&text=${t}`) },
+    { label: "WhatsApp", icon: <WhatsAppIcon className="h-5 w-5" />, action: () => open(`https://wa.me/?text=${t}%20${u}`) },
   ];
 
   return (
@@ -31,7 +38,7 @@ const ShareButton = ({ postId, title }: Props) => {
         <PopoverTrigger asChild>
           <Button size="sm" className="gap-2 font-bold"><Share2 className="w-4 h-4" /> COMPARTILHA</Button>
         </PopoverTrigger>
-        <PopoverContent className="w-52 p-2" onClick={(e) => e.stopPropagation()}>
+        <PopoverContent className="w-56 p-2" onClick={(e) => e.stopPropagation()}>
           <div className="flex flex-col gap-1">
             {options.map((o) => (
               <Button key={o.label} variant="ghost" className="justify-start gap-3" onClick={o.action}>
