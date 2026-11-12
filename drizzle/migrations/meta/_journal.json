@@ -15,6 +15,13 @@
       "when": 1794341366400,
       "tag": "0001_service_video_storage_access",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794490603394,
+      "tag": "0002_tighten_public_access_rules",
+      "breakpoints": true
     }
   ]
 }
