@@ -5,6 +5,7 @@ import { getSignedImageUrl } from "@/lib/site-content";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SiteHeader from "@/components/SiteHeader";
+import ShareButton from "@/components/ShareButton";
 
 type Post = { id: string; title: string; body: string; image_url: string | null; created_at: string };
 
@@ -45,6 +46,7 @@ const PostDetail = () => {
             <div className="prose prose-lg max-w-none text-foreground whitespace-pre-wrap leading-relaxed">
               {post.body}
             </div>
+            <ShareButton postId={post.id} title={post.title} />
           </article>
         )}
       </main>

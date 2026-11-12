@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSignedImageUrl } from "@/lib/site-content";
 import { ArrowRight } from "lucide-react";
+import ShareButton from "@/components/ShareButton";
 
 type Post = { id: string; title: string; body: string; image_url: string | null; created_at: string };
 
@@ -51,8 +52,11 @@ const PostsFeed = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-primary mb-3">{latest.title}</h3>
                 <p className="text-foreground line-clamp-4">{latest.body}</p>
-                <div className="mt-4 inline-flex items-center gap-2 text-primary font-semibold">
-                  Ler mais <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="mt-4 flex flex-wrap items-center gap-4">
+                  <span className="inline-flex items-center gap-2 text-primary font-semibold">
+                    Ler mais <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <ShareButton postId={latest.id} title={latest.title} />
                 </div>
               </CardContent>
             </div>
@@ -69,6 +73,7 @@ const PostsFeed = () => {
                     <div className="text-xs text-foreground mb-1">{new Date(p.created_at).toLocaleDateString("pt-BR")}</div>
                     <h4 className="font-bold text-primary mb-1 group-hover:underline">{p.title}</h4>
                     <p className="text-sm text-foreground line-clamp-3">{p.body}</p>
+                    <div className="mt-3"><ShareButton postId={p.id} title={p.title} /></div>
                   </CardContent>
                 </Card>
               </Link>
