@@ -89,5 +89,9 @@ export async function saveSettings(key: string, value: unknown) {
 export async function getSignedImageUrl(bucket: string, path: string | null | undefined): Promise<string | null> {
   if (!path) return null;
   const { data } = await supabase.storage.from(bucket).createSignedUrl(path, 60 * 60);
-  return data?.signedUrl ?? null;
+  if (data?.signedUrl) return data.signedUrl;
+  if (bucket !== "site-images") return null;
+  // Visitors cannot read storage directly; a server function signs only images shown on the site.
+  const { data: res } = await supabase.functions.invoke("public-site-image", { body: { path } });
+  return (res as { signedUrl?: string } | null)?.signedUrl ?? null;
 }

@@ -29,6 +29,13 @@
       "when": 1794491021234,
       "tag": "0003_public_reads_without_admin_helper",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794662007607,
+      "tag": "0004_site_images_reads_via_server",
+      "breakpoints": true
     }
   ]
 }
