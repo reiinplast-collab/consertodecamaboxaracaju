@@ -23,12 +23,10 @@ const AdmPostsEditor = () => {
     const { data } = await supabase.from("posts").select("*").order("created_at", { ascending: false });
     const list = (data as Post[]) ?? [];
     setPosts(list);
-    const map: Record<string, string> = {};
-    for (const p of list) if (p.image_url) {
-      const u = await getSignedImageUrl("site-images", p.image_url);
-      if (u) map[p.id] = u;
-    }
-    setUrls(map);
+    const entries = await Promise.all(
+      list.filter((p) => p.image_url).map(async (p) => [p.id, await getSignedImageUrl("site-images", p.image_url)] as const)
+    );
+    setUrls(Object.fromEntries(entries.filter(([, u]) => u)) as Record<string, string>);
   };
   useEffect(() => { load(); }, []);
 
